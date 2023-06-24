@@ -9,7 +9,6 @@ public class MemoryCategoryRepository implements CategoryRepository {
   private static Map<Long, Category> store = new HashMap<>();
   private static long sequence = 1L;
 
-
   @Override
   public Category save(Category category) {
     category.setId(++sequence);

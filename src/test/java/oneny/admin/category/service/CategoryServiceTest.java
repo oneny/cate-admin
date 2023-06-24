@@ -1,5 +1,6 @@
 package oneny.admin.category.service;
 
+import oneny.admin.AppConfig;
 import oneny.admin.category.domain.Category;
 import oneny.admin.category.exception.DuplicateException;
 import oneny.admin.category.repository.CategoryRepository;
@@ -8,24 +9,20 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 
+@SpringBootTest
+@Transactional
 class CategoryServiceTest {
 
+  @Autowired
   private CategoryService categoryService;
-  private MemoryCategoryRepository categoryRepository;
-
-  @BeforeEach
-  public void setUp() {
-    categoryService = new CategoryService();
-    categoryRepository = new MemoryCategoryRepository();
-  }
-
-  @AfterEach
-  void tearDown() {
-    categoryRepository.clearStore();
-  }
+  @Autowired
+  private CategoryRepository categoryRepository;
 
   @Test
   public void 카테고리_등록() {

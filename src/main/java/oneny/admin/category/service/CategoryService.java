@@ -11,7 +11,11 @@ import java.util.Optional;
 public class CategoryService {
 
   private static final String DUPLICATE_CATEGORY_MESSAGE = "이미 존재하는 카테고리입니다.";
-  private final CategoryRepository categoryRepository = new MemoryCategoryRepository();
+  private final CategoryRepository categoryRepository;
+
+  public CategoryService(CategoryRepository categoryRepository) {
+    this.categoryRepository = categoryRepository;
+  }
 
   public Long addCategory(Category category) {
     validateDuplicateCategory(category);

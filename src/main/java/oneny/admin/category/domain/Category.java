@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 public class Category {
@@ -17,7 +18,12 @@ public class Category {
   }
 
   public Category(String name, Category parent) {
-    this.name = name.toUpperCase();
+    this(null, name, parent);
+  }
+
+  public Category(Long id, String name, Category parent) {
+    this.id = id;
+    this.name = name;
     this.parent = parent;
   }
 
@@ -25,7 +31,24 @@ public class Category {
     this.id = id;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public boolean matchName(String name) {
     return this.name.equals(name);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Category category = (Category) o;
+    return Objects.equals(getId(), category.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getId());
   }
 }
