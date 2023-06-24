@@ -2,6 +2,7 @@ package oneny.admin;
 
 import oneny.admin.category.repository.CategoryRepository;
 import oneny.admin.category.repository.JdbcCategoryRepository;
+import oneny.admin.category.repository.JdbcTemplateRepository;
 import oneny.admin.category.service.CategoryService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +26,7 @@ public class AppConfig {
   @Bean
   public CategoryRepository categoryRepository() {
 //    return new MemoryCategoryRepository();
-    return new JdbcCategoryRepository(dataSource);
+//    return new JdbcCategoryRepository(dataSource);
+    return new JdbcTemplateRepository(dataSource);
   }
 }
