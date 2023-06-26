@@ -1,32 +1,37 @@
 package oneny.admin;
 
+import jakarta.persistence.EntityManager;
 import oneny.admin.category.repository.CategoryRepository;
-import oneny.admin.category.repository.JdbcCategoryRepository;
-import oneny.admin.category.repository.JdbcTemplateRepository;
+import oneny.admin.category.repository.JpaCategoryRepository;
 import oneny.admin.category.service.CategoryService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
-
 @Configuration
 public class AppConfig {
 
-  private final DataSource dataSource;
+//  private final EntityManager em;
+//
+//  public AppConfig(EntityManager em) {
+//    this.em = em;
+//  }
 
-  public AppConfig(DataSource dataSource) {
-    this.dataSource = dataSource;
+  private final CategoryRepository categoryRepository;
+
+  public AppConfig(CategoryRepository categoryRepository) {
+    this.categoryRepository = categoryRepository;
   }
 
   @Bean
   public CategoryService categoryService() {
-    return new CategoryService(categoryRepository());
+    return new CategoryService(categoryRepository);
   }
 
-  @Bean
-  public CategoryRepository categoryRepository() {
-//    return new MemoryCategoryRepository();
-//    return new JdbcCategoryRepository(dataSource);
-    return new JdbcTemplateRepository(dataSource);
-  }
+//  @Bean
+//  public CategoryRepository categoryRepository() {
+//    return new-form.html MemoryCategoryRepository();
+//    return new-form.html JdbcCategoryRepository(dataSource);
+//    return new JdbcTemplateRepository(dataSource);
+//    return new JpaCategoryRepository(em);
+//  }
 }

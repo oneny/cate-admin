@@ -4,10 +4,12 @@ import oneny.admin.category.domain.Category;
 import oneny.admin.category.exception.DuplicateException;
 import oneny.admin.category.repository.CategoryRepository;
 import oneny.admin.category.repository.MemoryCategoryRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class CategoryService {
 
   private static final String DUPLICATE_CATEGORY_MESSAGE = "이미 존재하는 카테고리입니다.";

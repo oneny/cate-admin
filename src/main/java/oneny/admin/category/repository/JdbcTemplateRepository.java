@@ -40,9 +40,10 @@ public class JdbcTemplateRepository implements CategoryRepository {
 
   @Override
   public Optional<Category> findById(Long id) {
-    List<Category> result = jdbcTemplate.query("select id, name from category where id = ?", categoryRowMapper(), id);
+    return jdbcTemplate.query("select id, name from category where id = ?", categoryRowMapper(), id)
+            .stream()
+            .findAny();
 
-    return result.stream().findAny();
   }
 
   @Override

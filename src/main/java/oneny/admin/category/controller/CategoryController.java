@@ -25,8 +25,9 @@ public class CategoryController {
   }
 
   @GetMapping("/new")
-  public String newForm() {
-    return "new-form";
+  public String newForm(Model model) {
+    model.addAttribute("categoryForm", new CategoryFormDTO());
+    return "category/new-form";
   }
 
   @PostMapping(value = "/new")
@@ -36,7 +37,7 @@ public class CategoryController {
 
     categoryService.addCategory(category);
 
-    return "redirect:/";
+    return "redirect:/category/list";
   }
 
   @GetMapping(value = "/{categoryId}")
@@ -52,6 +53,6 @@ public class CategoryController {
     List<Category> categories = categoryService.findCategories();
     model.addAttribute("categories", categories);
 
-    return "categoryList";
+    return "category/list";
   }
 }
